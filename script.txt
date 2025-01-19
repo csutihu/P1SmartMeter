@@ -1,0 +1,35 @@
+>D
+r="1,0-0:98.1.0(@("
+;use a variable to store the decode string
+>B
+smlj=0
+;don't send teleperiod MQTT at boot, because we can have 0 values (meter didn't>
+->sensor53 r
+>R
+smlj=0
+;don't send teleperiod MQTT at script restart, because we can have 0 values (me>
+>S
+if upsecs>22
+then
+smlj|=1
+endif
+;only send teleperiod MQTT if 22 seconds passed since boot (during this time me>
+>M 1
++1,3,o,16,115200,MVM,1
+1,1-0:32.7.0(@1,L1 Voltage,V,volts_l1,1
+1,1-0:52.7.0(@1,L2 Voltage,V,volts_l2,1
+1,1-0:72.7.0(@1,L3 Voltage,V,volts_l3,1
+1,1-0:1.7.0(@1,Power import,kW,pwr_imp,3
+1,1-0:2.7.0(@1,Power export,kW,pwr_exp,3
+1,1-0:13.7.0(@1,Power factor,,factor,3
+1,1-0:14.7.0(@1,Frequency,Hz,freq,2
+1,0-0:96.14.0(@1,Current tariff,,tariff,0
+1,=h<hr/>
+1,1-0:1.8.0(@1,Energy import,kWh,enrg_imp,3
+1,1-0:2.8.0(@1,Energy export,kWh,enrg_exp,3
+1,1-0:1.8.1(@1,Energy import T1,kWh,enrg_imp_t1,3
+1,1-0:1.8.2(@1,Energy import T2,kWh,enrg_imp_t2,3
+1,1-0:2.8.1(@1,Energy export T1,kWh,enrg_exp_t1,3
+1,1-0:2.8.2(@1,Energy export T2,kWh,enrg_exp_t2,3
+1,=h<hr/>
+#
